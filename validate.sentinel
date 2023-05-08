@@ -1,3 +1,11 @@
+import "tfconfig/v2" as tfconfig
+
+all_security_groups = filter tfconfig.resources as _, res {
+    res.type is "aws_security_group"
+}
+
 main = rule {
-    1 > 2
+    all all_security_groups as _, sg {
+        sg.mode is "managed"
+    }
 }
