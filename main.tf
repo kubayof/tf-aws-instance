@@ -45,12 +45,16 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
-resource "aws_instance" "instance" {
-  tags = {
-    Name = "tf-instance"
-  }
-  ami = data.aws_ami.amazon_linux_2.id
-  instance_type = "t2.micro"
-  security_groups = [aws_security_group.instance_sg.id]
-  subnet_id = "subnet-07d3b96a2d1e16e3d"
+#resource "aws_instance" "instance" {
+#  tags = {
+#    Name = "tf-instance"
+#  }
+#  ami = data.aws_ami.amazon_linux_2.id
+#  instance_type = "t2.micro"
+#  security_groups = [aws_security_group.instance_sg.id]
+#  subnet_id = "subnet-07d3b96a2d1e16e3d"
+#}
+
+output "ami" {
+  value = data.aws_ami.amazon_linux_2.name
 }
